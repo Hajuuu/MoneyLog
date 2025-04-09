@@ -1,32 +1,53 @@
 <template>
-  <div class="setting-img-view">
-    <!-- 뒤로가기 -->
-    <div>
-      <i class="fa-solid fa-xmark" @click="router.go(-1)"></i>
+  <div class="setting-img-view container py-4">
+    <!-- 상단 아이콘 -->
+    <div class="d-flex justify-content-end">
+      <i
+        class="fa-solid fa-xmark fs-4"
+        @click="router.go(-1)"
+        role="button"
+      ></i>
     </div>
 
     <!-- 안내 문구 -->
-    <div>
-      <h3>프로필 이미지를 설정하세요.</h3>
-      <p>친구들에게 보여줄 나만의 프로필이에요.</p>
+    <div class="text-center my-3">
+      <h4 class="fw-bold">프로필 이미지를 설정하세요.</h4>
+      <p class="text-muted small">친구들에게 보여줄 나만의 프로필이에요.</p>
     </div>
 
-    <!-- 미리보기 -->
-    <div>
-      <img :src="selectedImage.checked" alt="선택된 이미지" />
+    <!-- 선택된 이미지 미리보기 -->
+    <div class="text-center mb-4">
+      <img
+        :src="selectedImage.checked"
+        alt="선택된 이미지"
+        class="rounded-circle"
+        style="width: 100px; height: 100px"
+      />
     </div>
 
     <!-- 프로필 이미지 선택 목록 -->
-    <div>
-      <div v-for="img in profileImages" :key="img" @click="selectImage(img.id)">
-        <img :src="selectedImageId === img.id ? img.checked : img.unchecked" />
+    <div class="bg-light rounded p-3 d-flex justify-content-center gap-3 mb-4">
+      <div
+        v-for="img in profileImages"
+        :key="img.id"
+        @click="selectImage(img.id)"
+        class="cursor-pointer"
+        style="width: 50px; height: 50px"
+      >
+        <img
+          :src="selectedImageId === img.id ? img.checked : img.unchecked"
+          class="img-fluid rounded-circle border"
+        />
       </div>
     </div>
 
     <!-- 저장 버튼 -->
-    <div>
-      <button @click="saveProfile">수정 완료</button>
-    </div>
+    <button
+      class="btn btn-dark w-100 rounded-pill py-2 fw-semibold"
+      @click="saveProfile"
+    >
+      수정 완료
+    </button>
   </div>
 </template>
 

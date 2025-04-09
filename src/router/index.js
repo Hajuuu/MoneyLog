@@ -35,6 +35,15 @@ const router = createRouter({
       name: 'setting',
       component: SettingPage,
     },
+    ,
+    {
+      path: '/setting/edit',
+      component: SettingProfilePage,
+    },
+    {
+      path: '/setting/image',
+      component: SettingImgPage,
+    },
   ],
 });
 

@@ -1,3 +1,6 @@
+@import 'bootstrap/dist/css/bootstrap.min.css';
+@import '@fortawesome/fontawesome-free/css/all.min.css';
+
 html,
 body,
 div,
@@ -122,6 +125,7 @@ table {
   border-collapse: collapse;
   border-spacing: 0;
 }
+*/
 
 /* reset css */
 

@@ -31,9 +31,9 @@
 </template>
 
 <script setup>
-import { ref, computed, onMounted } from 'vue';
-import { useRouter } from 'vue-router';
 import { settingAPI } from '@/api/index.js';
+import { computed, onMounted, ref } from 'vue';
+import { useRouter } from 'vue-router';
 
 // 이미지 import
 import checked1 from '@/assets/profileImage/imageChecked1.svg';
@@ -66,7 +66,7 @@ const selectedImage = computed(() =>
 
 // 초기 로딩
 onMounted(async () => {
-  const res = await settingAPI.getSetting();
+  const res = await settingAPI.getSetting(1);
   user.value = res.data;
 });
 
@@ -77,8 +77,9 @@ const selectImage = (id) => {
 };
 
 // 저장
+// 저장
 const saveProfile = async () => {
-  await settingAPI.updateSetting(user.value);
-  router.push('/settings');
+  await settingAPI.updateSetting(user.value.id, user.value); //  id 따로 넘기기
+  router.push('/setting');
 };
 </script>

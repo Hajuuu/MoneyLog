@@ -1,22 +1,55 @@
+<script setup>
+import { useRouter } from 'vue-router';
+import { ref } from 'vue';
+
+const router = useRouter();
+const currentRoute = ref(router.currentRoute.value.name);
+
+const navigate = (routeName) => {
+  currentRoute.value = routeName;
+  router.push({ name: routeName });
+};
+</script>
+
 <template>
   <nav class="bottom-nav">
-    <div class="nav-item">
+    <div
+      class="nav-item"
+      @click="navigate('home')"
+      :class="{ active: currentRoute === 'home' }"
+    >
       <i class="fas fa-home"></i>
       <span>홈</span>
     </div>
-    <div class="nav-item">
+    <div
+      class="nav-item"
+      @click="navigate('transactions')"
+      :class="{ active: currentRoute === 'transactions' }"
+    >
       <i class="fas fa-list"></i>
       <span>거래내역</span>
     </div>
-    <div class="nav-item">
+    <div
+      class="nav-item"
+      @click="navigate('statistics')"
+      :class="{ active: currentRoute === 'statistics' }"
+    >
       <i class="fas fa-chart-bar"></i>
       <span>통계</span>
     </div>
-    <div class="nav-item">
+    <div
+      class="nav-item"
+      @click="navigate('goal')"
+      :class="{ active: currentRoute === 'goal' }"
+    >
       <i class="fas fa-bullseye"></i>
       <span>목표</span>
     </div>
-    <div class="nav-item">
+    <div
+      class="nav-item"
+      @click="navigate('setting')"
+      :class="{ active: currentRoute === 'setting' }"
+    >
       <i class="fas fa-cog"></i>
       <span>설정</span>
     </div>

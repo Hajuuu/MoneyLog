@@ -21,6 +21,11 @@ export const useBudgetStore = defineStore('budget', {
         .filter((t) => t.type === 'income' && t.date.startsWith(month))
         .reduce((sum, t) => sum + t.amount, 0);
     },
+    monthlyExpense: (state) => (month) => {
+      return state.transactions
+        .filter((t) => t.type === 'expense' && t.date.startsWith(month))
+        .reduce((sum, t) => sum + t.amount, 0);
+    },
     expenseByCategory: (state) => (month) => {
       const expenses = {};
       state.transactions

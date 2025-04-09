@@ -34,22 +34,23 @@ const name = ref('');
 const email = ref('');
 
 onMounted(async () => {
-  const res = await settingAPI.getSetting();
+  const res = await settingAPI.getSetting(1);
   user.value = res.data;
   name.value = '';
   email.value = '';
 });
 
 const saveProfile = async () => {
-  // 기존 값을 복사해서 수정된 값으로 덮어쓰기
   const updatedUser = {
     ...user.value,
     name: name.value,
     email: email.value,
   };
 
-  await settingAPI.updateSetting(updatedUser);
-  router.push('/settings');
+  // user.value.id를 첫 번째 인자로 넘기기!
+  await settingAPI.updateSetting(user.value.id, updatedUser);
+
+  router.push('/setting');
   alert('수정되었습니다');
 };
 </script>

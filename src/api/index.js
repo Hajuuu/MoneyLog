@@ -26,7 +26,7 @@ export const categoryAPI = {
 };
 
 export const settingAPI = {
-  getSetting: () => api.get('/users'),
+  getSetting: (id) => api.get(`/users/${id}`),
   updateSetting: (id, setting) => api.put(`/users/${id}`, setting),
 };
 

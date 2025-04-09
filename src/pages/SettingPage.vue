@@ -49,7 +49,7 @@ const user = ref({ name: '', email: '', image: '' });
 
 onMounted(async () => {
   try {
-    const res = await settingAPI.getSetting();
+    const res = await settingAPI.getSetting(1);
     console.log(res.data);
     console.log(user);
     user.value = res.data;

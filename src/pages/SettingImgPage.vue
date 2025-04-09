@@ -2,7 +2,7 @@
   <div class="setting-img-view">
     <!-- 뒤로가기 -->
     <div>
-      <i class="xmark" @click="router.go(-1)"></i>
+      <i class="fa-solid fa-xmark" @click="router.go(-1)"></i>
     </div>
 
     <!-- 안내 문구 -->
@@ -33,7 +33,7 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-// import { userApi } from '@/api/index.js';
+import { settingAPI } from '@/api/index.js';
 
 // 이미지 import
 import checked1 from '@/assets/profileImage/imageChecked1.svg';
@@ -65,10 +65,10 @@ const selectedImage = computed(() =>
 );
 
 // 초기 로딩
-// onMounted(async () => {
-//   const res = await userApi.getUser();
-//   user.value = res.data;
-// });
+onMounted(async () => {
+  const res = await settingAPI.getSetting();
+  user.value = res.data;
+});
 
 // 이미지 선택
 const selectImage = (id) => {
@@ -77,8 +77,8 @@ const selectImage = (id) => {
 };
 
 // 저장
-// const saveProfile = async () => {
-//   await userApi.updateUser(user.value);
-//   router.push('/settings');
-// };
+const saveProfile = async () => {
+  await settingAPI.updateSetting(user.value);
+  router.push('/settings');
+};
 </script>

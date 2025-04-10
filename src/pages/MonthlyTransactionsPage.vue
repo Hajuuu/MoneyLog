@@ -99,6 +99,11 @@ const formatDate = (date) => {
   });
 };
 
+// 거래 상세로 이동
+const goToDetail = (id) => {
+  router.push(`/transactions/detail/${id}`);
+};
+
 onMounted(() => {
   fetchTransactions();
 });
@@ -129,6 +134,7 @@ onMounted(() => {
         v-for="transaction in transactions"
         :key="transaction.id"
         class="transaction-item p-3 border-bottom"
+        @click="goToDetail(transaction.id)"
       >
         <div class="d-flex justify-content-between align-items-center">
           <div class="d-flex align-items-center">

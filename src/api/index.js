@@ -33,7 +33,7 @@ export const settingAPI = {
 
 export const goalAPI = {
   getGoals: () => api.get('/goals'),
-  addGoals: () => api.post('/goals'),
+  addGoals: (amount) => api.post('/goals', amount),
 };
 
 export default api;

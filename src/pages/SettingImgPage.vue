@@ -2,11 +2,9 @@
   <div class="setting-img-view container py-4">
     <!-- 상단 아이콘 -->
     <div class="d-flex justify-content-end">
-      <i
-        class="fa-solid fa-xmark fs-4"
-        @click="router.go(-1)"
-        role="button"
-      ></i>
+      <button class="btn btn-link me-2" @click="router.go(-1)">
+        <i class="fas fa-xmark"></i>
+      </button>
     </div>
 
     <!-- 안내 문구 -->
@@ -117,3 +115,15 @@ const saveProfile = async () => {
   router.push('/setting');
 };
 </script>
+
+<style scoped>
+.btn-link {
+  color: #333;
+  text-decoration: none;
+  padding: 0;
+}
+
+.btn-link:hover {
+  color: #007bff;
+}
+</style>

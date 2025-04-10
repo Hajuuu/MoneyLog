@@ -1,19 +1,19 @@
 <template>
-  <div class="container py-4 setting-view">
+  <div class="container">
     <!-- 상단 타이틀 & 수정 버튼 -->
-    <div class="d-flex justify-content-between align-items-center mb-4">
-      <h2 class="fw-bold">설정</h2>
+    <header class="d-flex justify-content-between align-items-center p-3 border-bottom">
+      <h2 class="transaction-text mb-0">설정</h2>
       <button class="btn btn-link">
         <span @click="goToEdit">수정</span>
       </button>
-    </div>
+    </header>
 
     <!-- 프로필 이미지 -->
     <div class="text-center position-relative mb-4">
       <img
         :src="selectedProfileImage"
         alt="프로필 이미지"
-        class="border-0 mb-4"
+        class="border-0 mt-5 mb-4"
         style="width: 100px; height: 100px; object-fit: cover"
         @click="goToImageEdit"
       />
@@ -37,6 +37,19 @@
   </div>
 </template>
 
+<style scoped>
+.container {
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 10px;
+}
+
+.transaction-text {
+  margin: 0;
+  font-size: 1.25rem;
+  font-weight: 500;
+}
+</style>
 <script setup>
 import { onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';

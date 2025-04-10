@@ -146,3 +146,7 @@ table {
 * {
   -ms-overflow-style: none;
 }
+/* 글꼴 설정 */
+body {
+  font-family: 'Pretendard', sans-serif !important;
+}

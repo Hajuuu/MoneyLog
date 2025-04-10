@@ -16,6 +16,7 @@ import './assets/main.css';
 <style>
 body {
   background-color: #f5f5f5;
+  font-family: 'Pretendard', sans-serif;
 }
 
 .app-wrapper {

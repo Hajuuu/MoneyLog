@@ -1,29 +1,25 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import axios from 'axios';
+import { useBudgetStore } from '@/stores/budget';
 import AddTransactionModal from '../components/AddTransactionModal.vue';
 
 const router = useRouter();
-const transactions = ref([]);
+const budgetStore = useBudgetStore();
 
 const showAddModal = ref(false);
-
 const filterType = ref('all');
 const sortOrder = ref('latest');
 const amountOrder = ref('high');
 const showFilterModal = ref(false);
-
 const currentDate = ref(new Date());
 const availableMonths = ref([]);
-
 const currentView = ref('list');
 
 // 거래내역 불러오기
 const fetchTransactions = async () => {
   try {
-    const response = await axios.get(`http://localhost:3000/budget`);
-    transactions.value = response.data;
+    await budgetStore.fetchTransaction();
   } catch (error) {
     console.error('거래내역을 불러오는데 실패했습니다:', error);
   }
@@ -98,7 +94,7 @@ const amountOrderText = computed(() =>
 
 // 거래내역 필터링 및 정렬
 const myFilter = computed(() => {
-  let filtered = [...transactions.value];
+  let filtered = [...budgetStore.transactions];
 
   // 타입 필터링
   if (filterType.value !== 'all') {
@@ -120,6 +116,12 @@ const myFilter = computed(() => {
   }
   return filtered;
 });
+
+const handleCalendarView = () => {
+  currentView.value = 'calendar';
+  // 나중에 달력 뷰로 라우팅 구현
+  // router.push('/calendar');
+};
 
 onMounted(() => {
   fetchTransactions();

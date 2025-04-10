@@ -1,6 +1,7 @@
 <template>
   <div class="calendar-wrapper">
     <v-calendar
+      title-position="left"
       :attributes="dayEvents"
       is-expanded
       :hide-header="false"
@@ -59,6 +60,12 @@ const totals = computed(() => {
 // };
 </script>
 <style>
+.vc-container,
+.vc-pane-container {
+  border: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
 .vc-container {
   width: 100% !important;
   max-width: 100% !important;
@@ -73,25 +80,73 @@ const totals = computed(() => {
   padding: 1rem;
   box-sizing: border-box;
   width: 100%;
+  max-width: 480px;
+  margin: 0 auto;
 }
+
+/* 날짜 셀 */
 .day-cell {
-  padding: 4px;
   height: 80px;
+  padding: 4px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* 세로 중앙 */
+  align-items: center; /* 가로 중앙 */
   text-align: center;
   font-size: 0.75rem;
   box-sizing: border-box;
-  word-break: keep-all;
-  overflow: hidden; /* 내용이 넘치면 자르기 */
+  overflow: hidden;
 }
 
+/* 날짜 숫자 */
 .day-number {
   font-weight: bold;
+  font-size: 0.85rem;
   margin-bottom: 4px;
 }
 
+/* 수입/지출 영역 */
 .totals {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
   font-size: 0.7rem;
-  line-height: 1.2;
-  white-space: pre-line;
+  line-height: 1.1;
+  white-space: nowrap;
+  text-align: center;
+}
+
+/* bootstrap 활용한 색상 */
+.text-success {
+  color: #1da84d !important;
+}
+
+.text-danger {
+  color: #d7373f !important;
+}
+
+/* title부분의 색 변경 */
+/* 화살표 버튼을 흰 배경으로 변경 */
+.vc-arrow {
+  background-color: white;
+  color: #333;
+  border: none;
+  box-shadow: none;
+  width: 28px;
+  height: 28px;
+  border-radius: 6px;
+  transition: background-color 0.2s ease;
+}
+
+.vc-arrow:hover {
+  background-color: #f0f0f0;
+}
+
+/* 상단 연도/월 텍스트 스타일 */
+.vc-title {
+  font-size: 1.1rem;
+  font-weight: 700;
+  color: #222;
+  background-color: white;
 }
 </style>

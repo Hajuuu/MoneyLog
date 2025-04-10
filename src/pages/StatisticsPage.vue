@@ -1,13 +1,31 @@
 <template>
-  <div>
-    <h1>통계 및 분석</h1>
-    <div>
-      <button @click="currentView = 'daily'">일</button>
-      <button @click="currentView = 'monthly'">월</button>
+  <div class="statistics-view">
+    <header class="d-flex justify-content-between align-items-center p-3">
+      <h2 class="statistics-header mb-0">통계 및 분석</h2>
+    </header>
+    <div class="select-section p-3 border-bottom">
+      <div class="d-flex justify-content-between align-items-center mb-2">
+        <div class="select-buttons btn-group w-100">
+          <button
+            class="btn"
+            :class="currentView === 'daily' ? 'btn-primary' : 'btn-outline-primary'"
+            @click="currentView = 'daily'"
+          >
+            일일 통계
+          </button>
+          <button
+            class="btn"
+            :class="currentView === 'monthly' ? 'btn-primary' : 'btn-outline-primary'"
+            @click="currentView = 'monthly'"
+          >
+            월별 통계
+          </button>
+        </div>
+      </div>
+      <div class="chart-wrapper">
+        <canvas ref="chartCanvas"></canvas>
+      </div>
     </div>
-  </div>
-  <div class="chart-wrapper">
-    <canvas ref="chartCanvas"></canvas>
   </div>
 </template>
 
@@ -21,7 +39,7 @@ const budgetStore = useBudgetStore();
 const { transactions } = storeToRefs(budgetStore);
 
 onMounted(async () => {
-  await budgetStore.fetchTransaction();
+  await budgetStore.fetchTransactions();
   await budgetStore.fetchCategories();
 });
 Chart.register(...registerables);
@@ -41,9 +59,7 @@ const getChartData = (type) => {
     const matchType = item.type === 'expense';
     const matchId = item.id !== '8';
     const matchDate =
-      type === 'daily'
-        ? item.date === today
-        : item.date?.startsWith(currentMonth);
+      type === 'daily' ? item.date === today : item.date?.startsWith(currentMonth);
 
     return matchType && matchDate && matchId;
   });
@@ -111,6 +127,45 @@ watch(currentView, () => {
 </script>
 
 <style scoped>
+.statistics-view {
+  height: 100%;
+  overflow-y: auto;
+  padding-bottom: 60px;
+}
+
+.statistics-header {
+  font-size: 1.25rem;
+  font-weight: 500;
+  cursor: pointer;
+}
+
+.btn-link {
+  color: #333;
+  text-decoration: none;
+  padding: 0;
+}
+
+.btn-link:hover {
+  color: #007bff;
+}
+
+.select-buttons .btn {
+  flex: 1;
+  padding: 12px;
+  border: 1px solid #0d6efd;
+  color: #0d6efd;
+  min-width: 100px;
+}
+
+.select-buttons .btn.btn-primary {
+  background-color: #0d6efd;
+  color: white;
+}
+
+.select-buttons .btn:not(.btn-primary) {
+  background-color: white;
+}
+
 .chart-wrapper {
   width: 400px;
   height: 400px;

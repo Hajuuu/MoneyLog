@@ -3,12 +3,9 @@
     <!-- 상단 타이틀 & 수정 버튼 -->
     <div class="d-flex justify-content-between align-items-center mb-4">
       <h2 class="fw-bold">설정</h2>
-      <span
-        @click="goToEdit"
-        style="cursor: pointer; font-weight: 500; color: black"
-      >
-        수정
-      </span>
+      <button class="btn btn-link">
+        <span @click="goToEdit">수정</span>
+      </button>
     </div>
 
     <!-- 프로필 이미지 -->
@@ -29,11 +26,11 @@
     </div>
 
     <!-- 유저 정보 -->
-    <div class="mb-2 d-flex justify-content-between border-bottom py-2">
+    <div class="mb-2 mt-2 d-flex justify-content-between border-bottom py-2">
       <span class="fw-semibold">이름</span>
       <span>{{ user.name }}</span>
     </div>
-    <div class="mb-2 d-flex justify-content-between border-bottom py-2">
+    <div class="mb-2 mt-4 d-flex justify-content-between border-bottom py-2">
       <span class="fw-semibold">이메일 주소</span>
       <span>{{ user.email }}</span>
     </div>
@@ -78,3 +75,15 @@ const selectedProfileImage = computed(
 const goToEdit = () => router.push('/setting/edit');
 const goToImageEdit = () => router.push('/setting/image');
 </script>
+
+<style scoped>
+.btn-link {
+  color: #333;
+  text-decoration: none;
+  padding: 0;
+}
+
+.btn-link:hover {
+  color: #007bff;
+}
+</style>

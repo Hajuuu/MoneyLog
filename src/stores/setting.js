@@ -3,38 +3,36 @@ import { settingAPI } from '@/api';
 
 export const useSettingStore = defineStore('setting', {
   state: () => ({
-    setting: [],
+    setting: {},
     error: null,
   }),
 
   getters: {
+    getId: (state) => state.setting.id,
     getName: (state) => state.setting.name,
     getEmail: (state) => state.setting.email,
     getImage: (state) => state.setting.image,
   },
 
   actions: {
-    async fetchSetting() {
+    async fetchSetting(id) {
       try {
-        const response = await settingAPI.getSetting();
+        const response = await settingAPI.getSetting(id);
         this.setting = response.data;
       } catch (error) {
         this.error = error.message;
       }
     },
-  },
 
-  async updateSetting(id, setting) {
-    try {
-      const response = await settingAPI.updateSetting(id, setting);
-      const index = this.setting.findIndex((t) => t.id === id);
-      if (index !== -1) {
-        this.transactions[index] = response.data;
+    async updateSetting(id, setting) {
+      try {
+        const response = await settingAPI.updateSetting(id, setting);
+        this.setting = response.data;
+        return response.data;
+      } catch (error) {
+        this.error = error.message;
+        throw error;
       }
-      return response.data;
-    } catch (error) {
-      this.error = error.message;
-      throw error;
-    }
+    },
   },
 });

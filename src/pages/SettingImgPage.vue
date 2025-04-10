@@ -1,39 +1,69 @@
 <template>
-  <div class="setting-img-view">
-    <!-- 뒤로가기 -->
-    <div>
-      <i class="fa-solid fa-xmark" @click="router.go(-1)"></i>
+  <div class="setting-img-view container py-4">
+    <!-- 상단 아이콘 -->
+    <div class="d-flex justify-content-end">
+      <i
+        class="fa-solid fa-xmark fs-4"
+        @click="router.go(-1)"
+        role="button"
+      ></i>
     </div>
 
     <!-- 안내 문구 -->
-    <div>
-      <h3>프로필 이미지를 설정하세요.</h3>
-      <p>친구들에게 보여줄 나만의 프로필이에요.</p>
+    <div class="text-start my-4">
+      <h2 class="fw-bold lh-base mb-2" style="font-size: 1.5rem">
+        프로필 이미지를 <br />설정하세요.
+      </h2>
+      <br />
+      <p class="text-muted fw-bold mb-0 small">
+        친구들에게 보여줄 나만의 프로필이에요.
+      </p>
     </div>
-
-    <!-- 미리보기 -->
-    <div>
-      <img :src="selectedImage.checked" alt="선택된 이미지" />
+    <!-- 선택된 이미지 미리보기 -->
+    <div v-if="selectedImage?.checked" class="text-center mb-4">
+      <img
+        :src="selectedImage.checked"
+        alt="선택된 이미지"
+        class="rounded-circle"
+        style="width: 100px; height: 100px"
+      />
     </div>
 
     <!-- 프로필 이미지 선택 목록 -->
-    <div>
-      <div v-for="img in profileImages" :key="img" @click="selectImage(img.id)">
-        <img :src="selectedImageId === img.id ? img.checked : img.unchecked" />
+    <div class="bg-light rounded p-3 mb-4">
+      <span class="d-block ms-2 mb-2 text-muted fw-bold small"
+        >기본 프로필 이미지에서 선택</span
+      >
+      <div class="d-flex justify-content-start gap-3">
+        <div
+          v-for="img in profileImages"
+          :key="img.id"
+          @click="selectImage(img.id)"
+          class="cursor-pointer"
+          style="width: 50px; height: 50px"
+        >
+          <img
+            :src="selectedImageId === img.id ? img.checked : img.unchecked"
+            class="img-fluid rounded-circle"
+          />
+        </div>
       </div>
     </div>
 
     <!-- 저장 버튼 -->
-    <div>
-      <button @click="saveProfile">수정 완료</button>
-    </div>
+    <button
+      class="btn btn-dark w-100 rounded-pill py-2 fw-semibold"
+      @click="saveProfile"
+    >
+      수정 완료
+    </button>
   </div>
 </template>
 
 <script setup>
-import { settingAPI } from '@/api/index.js';
 import { computed, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useSettingStore } from '@/stores/setting.js';
 
 // 이미지 import
 import checked1 from '@/assets/profileImage/imageChecked1.svg';
@@ -54,32 +84,36 @@ const profileImages = [
   { id: 4, checked: checked4, unchecked: unchecked4 },
 ];
 
-const user = ref({ image: null }); // image는 숫자 id
-const selectedImageId = ref(1); //초기화면 1번으로 출력
-
 const router = useRouter();
+const settingStore = useSettingStore();
 
-// 선택된 이미지 객체
+const selectedImageId = ref(1);
+
+// 선택된 이미지
 const selectedImage = computed(() =>
   profileImages.find((img) => img.id === selectedImageId.value)
 );
 
-// 초기 로딩
+// 유저 정보 불러오기
 onMounted(async () => {
-  const res = await settingAPI.getSetting(1);
-  user.value = res.data;
+  await settingStore.fetchSetting(1);
+  selectedImageId.value = settingStore.setting?.image || 1;
 });
 
 // 이미지 선택
 const selectImage = (id) => {
   selectedImageId.value = id;
-  user.value.image = id;
 };
 
 // 저장
-// 저장
 const saveProfile = async () => {
-  await settingAPI.updateSetting(user.value.id, user.value); //  id 따로 넘기기
+  const updated = {
+    ...settingStore.setting,
+    image: selectedImageId.value,
+  };
+
+  await settingStore.updateSetting(settingStore.setting.id, updated);
+  alert('수정되었습니다');
   router.push('/setting');
 };
 </script>

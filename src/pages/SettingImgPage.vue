@@ -49,10 +49,7 @@
     </div>
 
     <!-- 저장 버튼 -->
-    <button
-      class="btn btn-dark w-100 rounded-pill py-2 fw-semibold"
-      @click="saveProfile"
-    >
+    <button class="btn btn-primary w-100" @click="saveProfile">
       수정 완료
     </button>
   </div>

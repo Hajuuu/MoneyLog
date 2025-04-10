@@ -23,8 +23,12 @@ const currentMonth = computed(() => {
   return `${year}-${month}`;
 });
 // 현재 월의 수입과 지출 계산
-const monthlyIncome = computed(() => budgetStore.monthlyIncome(currentMonth.value));
-const monthlyExpense = computed(() => budgetStore.monthlyExpense(currentMonth.value));
+const monthlyIncome = computed(() =>
+  budgetStore.monthlyIncome(currentMonth.value)
+);
+const monthlyExpense = computed(() =>
+  budgetStore.monthlyExpense(currentMonth.value)
+);
 const netIncome = computed(() => monthlyIncome.value - monthlyExpense.value);
 
 // 최근 거래내역 4개 가져옴
@@ -71,7 +75,7 @@ const selectMonth = (month) => {
 };
 
 onMounted(async () => {
-  await budgetStore.fetchTransaction();
+  await budgetStore.fetchTransactions();
   await budgetStore.fetchCategories();
 });
 </script>
@@ -110,7 +114,9 @@ onMounted(async () => {
       <div class="card mb-4">
         <div class="card-body">
           <h6 class="card-subtitle mb-2 text-success">순수익</h6>
-          <h5 class="card-title text-success">{{ formatCurrency(netIncome) }}원</h5>
+          <h5 class="card-title text-success">
+            {{ formatCurrency(netIncome) }}원
+          </h5>
         </div>
       </div>
     </div>
@@ -132,7 +138,9 @@ onMounted(async () => {
             </div>
             <div
               class="amount"
-              :class="transaction.type === 'income' ? 'text-success' : 'text-danger'"
+              :class="
+                transaction.type === 'income' ? 'text-success' : 'text-danger'
+              "
             >
               {{ transaction.type === 'income' ? '+' : '-'
               }}{{ formatCurrency(transaction.amount) }}원
@@ -144,7 +152,11 @@ onMounted(async () => {
   </div>
 
   <!-- 연월 선택 모달 -->
-  <div class="month-modal" v-if="showMonthModal" @click.self="showMonthModal = false">
+  <div
+    class="month-modal"
+    v-if="showMonthModal"
+    @click.self="showMonthModal = false"
+  >
     <div class="month-modal-content">
       <div class="year-selector">
         <div class="year-grid" v-if="!isYearSelected">

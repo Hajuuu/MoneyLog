@@ -6,7 +6,7 @@ import GoalPage from '../pages/GoalPage.vue';
 import SettingPage from '../pages/SettingPage.vue';
 import SettingImgPage from '../pages/SettingImgPage.vue';
 import SettingProfilePage from '../pages/SettingProfilePage.vue';
-
+import DetailPage from '@/pages/DetailPage.vue';
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
   routes: [
@@ -43,6 +43,10 @@ const router = createRouter({
     {
       path: '/setting/image',
       component: SettingImgPage,
+    },
+    {
+      path: '/transactions/detail/:id',
+      component: DetailPage,
     },
   ],
 });

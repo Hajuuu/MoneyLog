@@ -1,4 +1,10 @@
-<script setup></script>
+<script setup>
+import { useRouter } from 'vue-router';
+const router = useRouter();
+const goToDetail = (id) => {
+  router.push(`/transactions/detail/${id}`);
+};
+</script>
 
 <template>
   <div class="transactions-view">
@@ -29,7 +35,7 @@
         <div class="d-flex justify-content-between align-items-center">
           <div class="d-flex align-items-center">
             <i class="fas fa-circle me-3"> </i>
-            <div>
+            <div @click="goToDetail(2)">
               <div class="category-name">식비</div>
               <div class="transaction-date text-muted">2025-04-09</div>
             </div>

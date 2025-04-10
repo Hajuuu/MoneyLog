@@ -13,7 +13,7 @@
         <div class="modal-body">
           <ul class="list-group">
             <li
-              v-for="(item, index) in savings"
+              v-for="(item, index) in sortedSavings"
               :key="index"
               class="list-group-item d-flex justify-content-between"
             >
@@ -30,8 +30,19 @@
 <script setup>
 import { computed } from 'vue';
 import { useBudgetStore } from '../stores/budget';
+
+const props = defineProps({
+  show: Boolean,
+});
+
 const budgetStore = useBudgetStore();
-const savings = computed(() => budgetStore.transactionsByGoal);
+
+const sortedSavings = computed(() => {
+  return [...budgetStore.transactionsByGoal].sort(
+    // (a, b) => new Date(b.date) - new Date(a.date)
+    (a, b) => new Date(a.date) - new Date(b.date)
+  );
+});
 
 const formatCurrency = (amount) => {
   return new Intl.NumberFormat('ko-KR', {
@@ -47,11 +58,6 @@ const formatDate = (date) => {
     day: 'numeric',
   });
 };
-
-defineProps({
-  show: Boolean,
-  savings: Array,
-});
 </script>
 
 <style scoped>

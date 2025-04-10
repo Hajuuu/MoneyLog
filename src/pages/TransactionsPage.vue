@@ -1,49 +1,44 @@
 <script setup>
-import { useRouter } from 'vue-router';
-const router = useRouter();
-const goToDetail = (id) => {
-  router.push(`/transactions/detail/${id}`);
-};
+import { ref } from 'vue';
+import AddTransactionModal from '../components/AddTransactionModal.vue';
+import TransactionListView from '../components/TransactionListView.vue';
+import CalanderView from '../components/CalanderView.vue';
+
+const showAddModal = ref(false);
+const currentView = ref('list');
 </script>
 
 <template>
   <div class="transactions-view">
-    <header class="header">
-      <h2>거래 내역</h2>
+    <header class="d-flex justify-content-between align-items-center p-3 border-bottom">
+      <h2 class="transaction-text mb-0">거래 내역</h2>
+      <button class="btn btn-link" @click="showAddModal = true">
+        <i class="fas fa-plus"></i>
+      </button>
     </header>
 
     <div class="view-selector">
-      <div class="view-option">목록보기</div>
-      <div class="view-option">달력보기</div>
-    </div>
-
-    <div class="filter-section p-3 border-bottom">
-      <div class="d-flex justify-content-between align-items-center mb-2">
-        <div class="filter-buttons">
-          <button class="btn btn-outline-primary me-2">전체</button>
-          <button class="btn btn-outline-primary me-2">과거</button>
-          <button class="btn btn-outline-primary">고액순</button>
-        </div>
-        <button class="btn btn-link">
-          <i class="fas fa-search"></i>
-        </button>
+      <div
+        class="view-option"
+        :class="{ active: currentView === 'list' }"
+        @click="currentView = 'list'"
+      >
+        목록보기
+      </div>
+      <div
+        class="view-option"
+        :class="{ active: currentView === 'calendar' }"
+        @click="currentView = 'calendar'"
+      >
+        달력보기
       </div>
     </div>
 
-    <div class="transactions-list">
-      <div class="transaction-item p-3 border-bottom">
-        <div class="d-flex justify-content-between align-items-center">
-          <div class="d-flex align-items-center">
-            <i class="fas fa-circle me-3"> </i>
-            <div @click="goToDetail(2)">
-              <div class="category-name">식비</div>
-              <div class="transaction-date text-muted">2025-04-09</div>
-            </div>
-          </div>
-          <div class="amount">+ 10,000원</div>
-        </div>
-      </div>
-    </div>
+    <TransactionListView v-if="currentView === 'list'" />
+    <CalanderView v-else />
+
+    <!-- 거래내역 추가 모달 -->
+    <AddTransactionModal v-if="showAddModal" @close="showAddModal = false" />
   </div>
 </template>
 
@@ -54,25 +49,16 @@ const goToDetail = (id) => {
   padding-bottom: 60px;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 20px;
-  background-color: white;
-  border-bottom: 1px solid #eee;
-}
-
-.header h2 {
+.transaction-text {
   margin: 0;
-  font-size: 1.2rem;
-  font-weight: 600;
+  font-size: 1.25rem;
+  font-weight: 500;
 }
 
 .view-selector {
   display: flex;
   justify-content: center;
-  gap: 120px;
+  gap: 32px;
   padding: 12px 0;
   border-bottom: 1px solid #eee;
 }
@@ -101,33 +87,5 @@ const goToDetail = (id) => {
 
 .btn-link:hover {
   color: #007bff;
-}
-
-.filter-section {
-  background-color: white;
-  position: sticky;
-  top: 0;
-  z-index: 1;
-}
-
-.transaction-item {
-  transition: background-color 0.2s;
-}
-
-.transaction-item:hover {
-  background-color: #f8f9fa;
-}
-
-.category-name {
-  font-weight: 500;
-  margin-bottom: 2px;
-}
-
-.transaction-date {
-  font-size: 0.85rem;
-}
-
-.amount {
-  font-weight: 600;
 }
 </style>

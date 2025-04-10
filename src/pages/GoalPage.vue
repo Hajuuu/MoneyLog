@@ -3,14 +3,14 @@ import { ref, computed, onMounted } from 'vue';
 import { useGoalsStore } from '@/stores/goal';
 import SavingModal from '@/components/SavingModal.vue';
 import SetModal from '@/components/SetGoalModal.vue';
-import noGoalImage from '@/assets/images/nonogoal.jpeg';
+import noGoalImage from '@/assets/images/noo_goal.png';
 import { storeToRefs } from 'pinia';
 import { useBudgetStore } from '../stores/budget';
 const budgetStore = useBudgetStore();
 const totalSavingAmount = computed(() => budgetStore.totalGoal);
 
-const isSetModalVisible = ref(false);
-const isModalVisible = ref(false); // 모달 표시 여부
+const isSetModalVisible = ref(false); // 목표 금액 설정 모달 표시 여부
+const isModalVisible = ref(false); // 거래 내역 모달 표시 여부
 const store = useGoalsStore();
 const currentAmount = ref({
   amount: '',
@@ -28,7 +28,7 @@ const percentage = computed(() => {
   const current = Number(currentAmount.value.amount);
   const goal = Number(goalAmount.value.amount);
   if (!goal || isNaN(current)) return 0;
-  return Math.min((current / goal) * 100, 100);
+  return Math.min((current / goal) * 100);
 });
 
 const pigImage = computed(() => {
@@ -57,7 +57,7 @@ const animatePercentage = () => {
 
       setTimeout(() => {
         showMessage.value = false;
-      }, 4000);
+      }, 2000);
     }
   }, 16);
 };
@@ -96,15 +96,19 @@ onMounted(async () => {
     />
 
     <div v-if="goalAmount.amount == 0" class="container">
+      >
+      <img
+        src="@/assets/images/money-bag.png"
+        alt="money-bag"
+        style="width: 100px; margin-bottom: 20px"
+      />
       <img
         :src="noGoalImage"
         alt="nogoal"
         @click="isSetModalVisible = true"
-        style="cursor: pointer"
+        style="cursor: pointer; width: 300px"
       />
-      <h2 style="font-family: 'Pretendard', sans-serif; font-weight: bold">
-        목표 금액이 없습니다!
-      </h2>
+      <h2 class="goal-title">목표 금액이 없습니다!</h2>
     </div>
 
     <div v-else class="goal-box">
@@ -168,11 +172,38 @@ onMounted(async () => {
 </template>
 
 <style scoped>
+.goal-view {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh; /* 화면 전체 높이 */
+}
+
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  height: 80vh;
+}
 .goal-title {
-  font-size: 2rem;
+  font-size: 1.75rem;
   font-family: 'Pretendard', sans-serif;
   font-weight: 700;
-  margin: 40px 0 30px;
+  margin-top: 30px;
+  margin-bottom: 30px;
+}
+
+.goal-box {
+  max-width: 700px;
+  margin: 50px auto;
+  padding: 50px;
+  min-height: 600px;
+  background: white;
+  border-radius: 20px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
+  text-align: center;
 }
 .progress {
   height: 20px;
@@ -185,21 +216,12 @@ onMounted(async () => {
 }
 .pig-img {
   width: 250px;
-  margin-top: 20px;
-  transition: transform 0.3s ease-in-out;
+  margin-top: 30px;
 }
 .pig-img:hover {
-  transform: scale(1.1);
+  transform: scale(1.15);
 }
-.goal-box {
-  max-width: 400px;
-  margin: 50px auto;
-  padding: 30px;
-  background: white;
-  border-radius: 20px;
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-  text-align: center;
-}
+
 .alert-message {
   background-color: #d1e7dd;
   color: #0f5132;
@@ -209,10 +231,6 @@ onMounted(async () => {
   font-weight: bold;
   font-size: 1rem;
   animation: fadeInOut 2s ease-in-out;
-}
-.container {
-  text-align: center;
-  margin-top: 100px;
 }
 
 @keyframes fadeInOut {

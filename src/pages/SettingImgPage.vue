@@ -10,13 +10,17 @@
     </div>
 
     <!-- 안내 문구 -->
-    <div class="text-center my-3">
-      <h4 class="fw-bold">프로필 이미지를 설정하세요.</h4>
-      <p class="text-muted small">친구들에게 보여줄 나만의 프로필이에요.</p>
+    <div class="text-start my-4">
+      <h2 class="fw-bold lh-base mb-2" style="font-size: 1.5rem">
+        프로필 이미지를 <br />설정하세요.
+      </h2>
+      <br />
+      <p class="text-muted fw-bold mb-0 small">
+        친구들에게 보여줄 나만의 프로필이에요.
+      </p>
     </div>
-
     <!-- 선택된 이미지 미리보기 -->
-    <div class="text-center mb-4">
+    <div v-if="selectedImage?.checked" class="text-center mb-4">
       <img
         :src="selectedImage.checked"
         alt="선택된 이미지"
@@ -26,18 +30,23 @@
     </div>
 
     <!-- 프로필 이미지 선택 목록 -->
-    <div class="bg-light rounded p-3 d-flex justify-content-center gap-3 mb-4">
-      <div
-        v-for="img in profileImages"
-        :key="img.id"
-        @click="selectImage(img.id)"
-        class="cursor-pointer"
-        style="width: 50px; height: 50px"
+    <div class="bg-light rounded p-3 mb-4">
+      <span class="d-block ms-2 mb-2 text-muted fw-bold small"
+        >기본 프로필 이미지에서 선택</span
       >
-        <img
-          :src="selectedImageId === img.id ? img.checked : img.unchecked"
-          class="img-fluid rounded-circle border"
-        />
+      <div class="d-flex justify-content-start gap-3">
+        <div
+          v-for="img in profileImages"
+          :key="img.id"
+          @click="selectImage(img.id)"
+          class="cursor-pointer"
+          style="width: 50px; height: 50px"
+        >
+          <img
+            :src="selectedImageId === img.id ? img.checked : img.unchecked"
+            class="img-fluid rounded-circle"
+          />
+        </div>
       </div>
     </div>
 
@@ -52,9 +61,9 @@
 </template>
 
 <script setup>
-import { settingAPI } from '@/api/index.js';
 import { computed, onMounted, ref } from 'vue';
 import { useRouter } from 'vue-router';
+import { useSettingStore } from '@/stores/setting.js';
 
 // 이미지 import
 import checked1 from '@/assets/profileImage/imageChecked1.svg';
@@ -75,32 +84,36 @@ const profileImages = [
   { id: 4, checked: checked4, unchecked: unchecked4 },
 ];
 
-const user = ref({ image: null }); // image는 숫자 id
-const selectedImageId = ref(1); //초기화면 1번으로 출력
-
 const router = useRouter();
+const settingStore = useSettingStore();
 
-// 선택된 이미지 객체
+const selectedImageId = ref(1);
+
+// 선택된 이미지
 const selectedImage = computed(() =>
   profileImages.find((img) => img.id === selectedImageId.value)
 );
 
-// 초기 로딩
+// 유저 정보 불러오기
 onMounted(async () => {
-  const res = await settingAPI.getSetting(1);
-  user.value = res.data;
+  await settingStore.fetchSetting(1);
+  selectedImageId.value = settingStore.setting?.image || 1;
 });
 
 // 이미지 선택
 const selectImage = (id) => {
   selectedImageId.value = id;
-  user.value.image = id;
 };
 
 // 저장
-// 저장
 const saveProfile = async () => {
-  await settingAPI.updateSetting(user.value.id, user.value); //  id 따로 넘기기
+  const updated = {
+    ...settingStore.setting,
+    image: selectedImageId.value,
+  };
+
+  await settingStore.updateSetting(settingStore.setting.id, updated);
+  alert('수정되었습니다');
   router.push('/setting');
 };
 </script>

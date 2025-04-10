@@ -1,13 +1,14 @@
 <script setup>
 import { ref, onMounted, computed } from 'vue';
 import { useRouter } from 'vue-router';
-import axios from 'axios';
+import { useBudgetStore } from '@/stores/budget';
 
 const router = useRouter();
+const budgetStore = useBudgetStore();
+
 const transactions = ref([]);
 const currentDate = ref(new Date());
 const availableMonths = ref([]);
-
 const showMonthModal = ref(false);
 
 // 현재 년월 텍스트 출력
@@ -18,8 +19,8 @@ const currentMonthText = computed(() => {
 // 거래내역 불러오기
 const fetchTransactions = async () => {
   try {
-    const response = await axios.get('http://localhost:3000/budget');
-    const allTransactions = response.data;
+    await budgetStore.fetchTransaction();
+    const allTransactions = budgetStore.transactions;
 
     // 현재 선택된 월의 거래내역만 필터링
     const year = currentDate.value.getFullYear();
@@ -150,6 +151,23 @@ onMounted(() => {
             {{ transaction.type === 'income' ? '+' : '-'
             }}{{ formatCurrency(transaction.amount) }}원
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- 월 선택 모달-->
+    <div class="month-modal" v-if="showMonthModal" @click.self="showMonthModal = false">
+      <div class="month-modal-content">
+        <h5 class="text-center mb-3">월 선택</h5>
+        <div class="month-list">
+          <button
+            v-for="date in availableMonths"
+            :key="date.toISOString()"
+            class="month-item"
+            @click="selectMonth(date)"
+          >
+            {{ date.getFullYear() }}년 {{ date.getMonth() + 1 }}월
+          </button>
         </div>
       </div>
     </div>

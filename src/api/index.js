@@ -10,6 +10,7 @@ const api = axios.create({
 });
 
 export const budgetAPI = {
+  getTransactionById: (id) => api.get(`/budget/${id}`),
   getTransactions: () => api.get('/budget'),
   getIncomeTransactions: () => api.get('/budget?type=income'),
   getExpenseTransactions: () => api.get('/budget?type=expense'),

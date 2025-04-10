@@ -16,8 +16,10 @@ const currentAmount = ref({
   amount: '',
 });
 const { goals } = storeToRefs(store);
+
 const goalAmount = computed(() => {
-  return goals.value[0] || { amount: 0 };
+  if (goals.value.length === 0) return { amount: 0 };
+  return goals.value.slice(-1)[0];
 });
 
 const animatedPercentage = ref(0);
@@ -92,7 +94,6 @@ onMounted(async () => {
       v-if="isSetModalVisible"
       v-model:show="isSetModalVisible"
       @close="isSetModalVisible = false"
-      @submit="addGoal"
     />
 
     <div v-if="goalAmount.amount == 0" class="container">
@@ -113,6 +114,30 @@ onMounted(async () => {
 
     <div v-else class="goal-box">
       <h2 class="goal-title">저축 목표</h2>
+
+      <div
+        v-if="percentage > 100"
+        class="new_set"
+        style="background-color: #fff3cd; color: #664d03"
+      >
+        🥳 목표 금액을 다 모았어요 🥳
+        <button
+          @click="isSetModalVisible = true"
+          @submit="addGoal"
+          style="
+            margin-top: 10px;
+            margin-left: 10px;
+            padding: 4px 8px;
+            border: none;
+            background-color: #f0ad4e;
+            color: white;
+            border-radius: 6px;
+          "
+        >
+          목표 다시 설정하기
+        </button>
+      </div>
+
       <div class="mb-3 fw-bold">
         목표 금액: {{ formatCurrency(goalAmount.amount) }}원
       </div>
@@ -193,6 +218,13 @@ onMounted(async () => {
   font-weight: 700;
   margin-top: 30px;
   margin-bottom: 30px;
+}
+.new_set {
+  padding: 10px;
+  border-radius: 10px;
+  margin-bottom: 20px;
+  font-size: 1rem;
+  font-weight: bold;
 }
 
 .goal-box {

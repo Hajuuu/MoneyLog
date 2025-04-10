@@ -155,22 +155,27 @@ onMounted(() => {
       </div>
     </div>
 
-    <!-- 월 선택 모달-->
-    <div class="month-modal" v-if="showMonthModal" @click.self="showMonthModal = false">
-      <div class="month-modal-content">
-        <h5 class="text-center mb-3">월 선택</h5>
-        <div class="month-list">
-          <button
-            v-for="date in availableMonths"
-            :key="date.toISOString()"
-            class="month-item"
-            @click="selectMonth(date)"
-          >
-            {{ date.getFullYear() }}년 {{ date.getMonth() + 1 }}월
-          </button>
+    <!-- 월 선택 모달 -->
+    <Teleport to="body">
+      <div class="month-modal" v-if="showMonthModal" @click.self="showMonthModal = false">
+        <div
+          class="month-modal-content"
+          :style="{ height: `${Math.min(availableMonths.length * 60 + 100, 500)}px` }"
+        >
+          <h5 class="text-center mb-3">월 선택</h5>
+          <div class="month-list">
+            <button
+              v-for="date in availableMonths"
+              :key="date.toISOString()"
+              class="month-item"
+              @click="selectMonth(date)"
+            >
+              {{ date.getFullYear() }}년 {{ date.getMonth() + 1 }}월
+            </button>
+          </div>
         </div>
       </div>
-    </div>
+    </Teleport>
   </div>
 </template>
 

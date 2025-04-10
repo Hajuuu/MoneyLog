@@ -40,29 +40,26 @@
 <script setup>
 import { ref, onMounted } from 'vue';
 import { useRouter } from 'vue-router';
-import { settingAPI } from '@/api/index.js';
+import { useSettingStore } from '@/stores/setting.js';
 
 const router = useRouter();
-const user = ref({ name: '', email: '' });
+const settingStore = useSettingStore();
+
 const name = ref('');
 const email = ref('');
 
 onMounted(async () => {
-  const res = await settingAPI.getSetting(1);
-  user.value = res.data;
-  name.value = '';
-  email.value = '';
+  await settingStore.fetchSetting(1);
 });
 
 const saveProfile = async () => {
   const updatedUser = {
-    ...user.value,
+    ...settingStore.setting,
     name: name.value,
     email: email.value,
   };
-
-  // user.value.id를 첫 번째 인자로 넘기기!
-  await settingAPI.updateSetting(user.value.id, updatedUser);
+  //store에 업데이트 내용 올리기
+  await settingStore.updateSetting(settingStore.setting.id, updatedUser);
 
   router.push('/setting');
   alert('수정되었습니다');

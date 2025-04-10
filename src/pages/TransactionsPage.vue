@@ -186,7 +186,7 @@ onMounted(() => {
         <div class="d-flex justify-content-between align-items-center">
           <div class="d-flex align-items-center">
             <i
-              class="fas fa-circle me-3"
+              class="fas fa-circle fa-xs me-3"
               :class="transaction.type === 'income' ? 'text-success' : 'text-danger'"
             >
             </i>

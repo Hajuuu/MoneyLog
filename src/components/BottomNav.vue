@@ -1,13 +1,15 @@
 <script setup>
-import { useRouter } from 'vue-router';
-import { ref } from 'vue';
+import { useRouter, useRoute } from 'vue-router';
+import { computed } from 'vue';
 
 const router = useRouter();
-const currentRoute = ref(router.currentRoute.value.name);
+const route = useRoute();
+const currentRoute = computed(() => route.name);
 
 const navigate = (routeName) => {
-  currentRoute.value = routeName;
-  router.push({ name: routeName });
+  if (route.name !== routeName) {
+    router.push({ name: routeName });
+  }
 };
 </script>
 

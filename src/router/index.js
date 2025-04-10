@@ -1,6 +1,7 @@
 import { createRouter, createWebHistory } from 'vue-router';
 import HomePage from '../pages/HomePage.vue';
 import TransactionsPage from '../pages/TransactionsPage.vue';
+import MonthlyTransactionsPage from '../pages/MonthlyTransactionsPage.vue';
 import StatisticsPage from '../pages/StatisticsPage.vue';
 import GoalPage from '../pages/GoalPage.vue';
 import SettingPage from '../pages/SettingPage.vue';
@@ -19,6 +20,11 @@ const router = createRouter({
       path: '/transactions',
       name: 'transactions',
       component: TransactionsPage,
+    },
+    {
+      path: '/monthly-transactions',
+      name: 'monthly-transactions',
+      component: MonthlyTransactionsPage,
     },
     {
       path: '/statistics',

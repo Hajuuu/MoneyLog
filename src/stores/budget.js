@@ -38,6 +38,14 @@ export const useBudgetStore = defineStore('budget', {
         });
       return expenses;
     },
+    transactionsByGoal: (state) => {
+      return state.transactions.filter((t) => t.category === '저축');
+    },
+    totalGoal: (state) => {
+      return state.transactions
+        .filter((t) => t.category === '저축')
+        .reduce((sum, t) => sum + t.amount, 0);
+    },
   },
 
   actions: {

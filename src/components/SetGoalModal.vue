@@ -2,15 +2,15 @@
   <div class="modal-overlay">
     <div class="modal-content">
       <h3>목표 금액 입력</h3>
-      <input
-        v-model="currentAmount.amount"
-        type="number"
-        placeholder="금액을 입력하세요"
-      />
-      <div class="btn-group">
-        <button @click="addGoal">입력</button>
-        <!-- <button @click="$emit('close')">닫기</button> -->
+      <div class="mb-4">
+        <label class="form-label"></label>
+        <input
+          v-model="currentAmount.amount"
+          class="form-control"
+          placeholder="금액을 입력하세요"
+        />
       </div>
+      <button class="btn btn-primary w-100" @click="addGoal">입력</button>
     </div>
   </div>
 </template>
@@ -40,17 +40,22 @@ const addGoal = async () => {
   left: 0;
   width: 100%;
   height: 100%;
-  background: rgba(0, 0, 0, 0.4);
+  background-color: rgba(0, 0, 0, 0.5); /* 배경 어둡게 */
   display: flex;
   justify-content: center;
   align-items: center;
+  z-index: 1000;
 }
+
 .modal-content {
-  background: white;
-  padding: 30px;
-  border-radius: 10px;
+  background: #fff;
+  padding: 30px 20px;
+  border-radius: 12px;
+  width: 300px; /* ✅ 작게 만듦 */
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   text-align: center;
 }
+
 input {
   padding: 8px;
   width: 200px;

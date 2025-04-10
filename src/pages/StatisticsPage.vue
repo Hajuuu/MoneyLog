@@ -13,8 +13,17 @@
 
 <script setup>
 import { ref, onMounted, watch } from 'vue';
+import { useBudgetStore } from '@/stores/budget';
 import { Chart, registerables } from 'chart.js';
+import { storeToRefs } from 'pinia';
 
+const budgetStore = useBudgetStore();
+const { transactions } = storeToRefs(budgetStore);
+
+onMounted(async () => {
+  await budgetStore.fetchTransaction();
+  await budgetStore.fetchCategories();
+});
 Chart.register(...registerables);
 
 const chartCanvas = ref(null);
@@ -25,71 +34,10 @@ let chartInstance = null;
 const today = new Date().toISOString().split('T')[0];
 const currentMonth = today.slice(0, 7);
 
-// JSON 데이터 (예시로 직접 정의했지만 실제론 API나 import로 불러올 수도 있음)
-const db = {
-  budget: [
-    {
-      id: '1',
-      date: '2025-04-01',
-      type: 'income',
-      category: '월급',
-      amount: 3000000,
-      memo: '4월 급여',
-    },
-    {
-      id: '2',
-      date: '2025-04-02',
-      type: 'expense',
-      category: '식비',
-      amount: 15000,
-      memo: '점심식사',
-    },
-    {
-      id: '6ef9',
-      date: '2025-04-06',
-      type: 'expense',
-      category: '주거비',
-      amount: 5000000,
-      memo: '월세',
-    },
-    {
-      id: '8d20',
-      date: '2025-04-04',
-      type: 'expense',
-      category: '통신비',
-      amount: 110000,
-      memo: '통신비에용',
-    },
-    {
-      id: 'ea01',
-      date: '2025-04-05',
-      type: 'expense',
-      category: '식비',
-      amount: 15900,
-      memo: '밥먹었어용',
-    },
-    {
-      id: '4587',
-      date: '2025-04-02',
-      type: 'expense',
-      category: '의료비',
-      amount: 12500,
-      memo: '아야했어요',
-    },
-    {
-      id: '2c8a',
-      date: '2025-04-09',
-      type: 'expense',
-      category: '통신비',
-      amount: 120000,
-      memo: 'aaa',
-    },
-  ],
-};
-
 // 카테고리별 합계 추출 함수
 const getChartData = (type) => {
-  const filtered = db.budget.filter((item) => {
+  const _transactions = [...transactions.value];
+  const filtered = _transactions.filter((item) => {
     const matchType = item.type === 'expense';
     const matchId = item.id !== '8';
     const matchDate =

@@ -11,9 +11,6 @@ export const useBudgetStore = defineStore('budget', {
   }),
 
   getters: {
-    getTransactionById: (state) => (id) => {
-      return state.transactions.filter((t) => t.id === id);
-    },
     incomeCategoryNames: (state) =>
       state.incomeCategories.map((category) => category.name),
     expenseCategoryNames: (state) =>
@@ -49,6 +46,15 @@ export const useBudgetStore = defineStore('budget', {
   },
 
   actions: {
+    async getTransactionById(id) {
+      try {
+        const response = await budgetAPI.getTransactionById(id);
+        return response.data;
+      } catch (error) {
+        this.error = error.message;
+      }
+    },
+
     async fetchTransactions() {
       try {
         const response = await budgetAPI.getTransactions();

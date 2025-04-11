@@ -6,6 +6,7 @@ import SetModal from '@/components/SetGoalModal.vue';
 import noGoalImage from '@/assets/images/noo_goal.png';
 import { storeToRefs } from 'pinia';
 import { useBudgetStore } from '../stores/budget';
+
 const budgetStore = useBudgetStore();
 const totalSavingAmount = computed(() => budgetStore.totalGoal);
 
@@ -116,7 +117,7 @@ onMounted(async () => {
       <h2 class="goal-title">저축 목표</h2>
 
       <div
-        v-if="percentage > 100"
+        v-if="percentage >= 100"
         class="new_set"
         style="background-color: #fff3cd; color: #664d03"
       >

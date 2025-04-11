@@ -23,6 +23,7 @@ import { useToast } from 'vue-toastification';
 const store = useGoalsStore();
 const toast = useToast();
 const emit = defineEmits(['close']);
+
 const currentAmount = ref({
   amount: '',
 });
@@ -30,7 +31,11 @@ const currentAmount = ref({
 const addGoal = async () => {
   const amount = parseInt(currentAmount.value.amount);
 
-  if (isNaN(amount) || parseInt(amount) <= 0) {
+  if (
+    isNaN(amount) ||
+    parseInt(amount) <= 0 ||
+    !/^[0-9]+$/.test(currentAmount.value.amount)
+  ) {
     toast.error('올바른 목표 금액을 입력하세요');
     return;
   }

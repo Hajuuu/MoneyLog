@@ -1,0 +1,625 @@
+{
+  "budget": [
+    {
+      "id": "1",
+      "date": "2025-04-01",
+      "type": "income",
+      "category": "월급",
+      "amount": 3200000,
+      "memo": "4월 월급"
+    },
+    {
+      "id": "2",
+      "date": "2025-04-03",
+      "type": "income",
+      "category": "이자",
+      "amount": 150000,
+      "memo": "예금 이자"
+    },
+    {
+      "id": "3",
+      "date": "2025-04-05",
+      "type": "expense",
+      "category": "식비",
+      "amount": 52000,
+      "memo": "마라탕 배달"
+    },
+    {
+      "id": "4",
+      "date": "2025-04-07",
+      "type": "expense",
+      "category": "교통비",
+      "amount": 45000,
+      "memo": "지하철 교통카드 충전"
+    },
+    {
+      "id": "5",
+      "date": "2025-04-09",
+      "type": "expense",
+      "category": "통신비",
+      "amount": 95000,
+      "memo": "휴대폰 요금"
+    },
+    {
+      "id": "6",
+      "date": "2025-04-10",
+      "type": "income",
+      "category": "기타수입",
+      "amount": 50000,
+      "memo": "중고거래 수입"
+    },
+    {
+      "id": "7",
+      "date": "2025-04-11",
+      "type": "expense",
+      "category": "저축",
+      "amount": 1000000,
+      "memo": "적금 이체"
+    },
+    {
+      "id": "8",
+      "date": "2025-04-12",
+      "type": "expense",
+      "category": "정기구독",
+      "amount": 11000,
+      "memo": "넷플릭스 구독료"
+    },
+    {
+      "id": "9",
+      "date": "2025-04-13",
+      "type": "expense",
+      "category": "문화생활",
+      "amount": 18000,
+      "memo": "영화 관람"
+    },
+    {
+      "id": "10",
+      "date": "2025-04-13",
+      "type": "expense",
+      "category": "식비",
+      "amount": 8700,
+      "memo": "편의점 도시락"
+    },
+    {
+      "id": "11",
+      "date": "2025-04-14",
+      "type": "income",
+      "category": "보너스",
+      "amount": 300000,
+      "memo": "1분기 성과급"
+    },
+    {
+      "id": "12",
+      "date": "2025-04-14",
+      "type": "expense",
+      "category": "의료비",
+      "amount": 25000,
+      "memo": "약국 감기약"
+    },
+    {
+      "id": "13",
+      "date": "2025-04-15",
+      "type": "income",
+      "category": "환급금",
+      "amount": 220000,
+      "memo": "통신비 환급"
+    },
+    {
+      "id": "14",
+      "date": "2025-04-15",
+      "type": "expense",
+      "category": "교육비",
+      "amount": 50000,
+      "memo": "온라인 강의 수강료"
+    },
+    {
+      "id": "15",
+      "date": "2025-04-16",
+      "type": "expense",
+      "category": "주거비",
+      "amount": 450000,
+      "memo": "4월 관리비"
+    },
+    {
+      "id": "16",
+      "date": "2025-04-16",
+      "type": "expense",
+      "category": "식비",
+      "amount": 31000,
+      "memo": "친구와 외식"
+    },
+    {
+      "id": "17",
+      "date": "2025-04-17",
+      "type": "income",
+      "category": "기타수입",
+      "amount": 10000,
+      "memo": "이벤트 포인트 환급"
+    },
+    {
+      "id": "18",
+      "date": "2025-04-18",
+      "type": "expense",
+      "category": "배달",
+      "amount": 15000,
+      "memo": "치킨 배달"
+    },
+    {
+      "id": "19",
+      "date": "2025-04-19",
+      "type": "income",
+      "category": "투자수익",
+      "amount": 480000,
+      "memo": "펀드 수익"
+    },
+    {
+      "id": "20",
+      "date": "2025-04-20",
+      "type": "expense",
+      "category": "저축",
+      "amount": 500000,
+      "memo": "청약저축 이체"
+    },
+    {
+      "id": "21",
+      "date": "2025-04-21",
+      "type": "expense",
+      "category": "문화생활",
+      "amount": 25000,
+      "memo": "전시회 관람"
+    },
+    {
+      "id": "22",
+      "date": "2025-04-22",
+      "type": "income",
+      "category": "용돈",
+      "amount": 100000,
+      "memo": "부모님 용돈"
+    },
+    {
+      "id": "23",
+      "date": "2025-04-23",
+      "type": "expense",
+      "category": "기타지출",
+      "amount": 30000,
+      "memo": "친구 생일 선물"
+    },
+    {
+      "id": "24",
+      "date": "2025-02-02",
+      "type": "income",
+      "category": "월급",
+      "amount": 3100000,
+      "memo": "2월 급여"
+    },
+    {
+      "id": "25",
+      "date": "2025-02-03",
+      "type": "expense",
+      "category": "식비",
+      "amount": 12000,
+      "memo": "점심 도시락"
+    },
+    {
+      "id": "26",
+      "date": "2025-02-15",
+      "type": "expense",
+      "category": "주거비",
+      "amount": 500000,
+      "memo": "2월 관리비"
+    },
+    {
+      "id": "27",
+      "date": "2025-02-20",
+      "type": "income",
+      "category": "기타수입",
+      "amount": 45000,
+      "memo": "중고거래"
+    },
+    {
+      "id": "28",
+      "date": "2025-03-01",
+      "type": "income",
+      "category": "월급",
+      "amount": 3100000,
+      "memo": "3월 급여"
+    },
+    {
+      "id": "29",
+      "date": "2025-03-03",
+      "type": "expense",
+      "category": "정기구독",
+      "amount": 11000,
+      "memo": "넷플릭스"
+    },
+    {
+      "id": "30",
+      "date": "2025-03-05",
+      "type": "expense",
+      "category": "문화생활",
+      "amount": 25000,
+      "memo": "공연 티켓"
+    },
+    {
+      "id": "31",
+      "date": "2025-03-10",
+      "type": "income",
+      "category": "보너스",
+      "amount": 500000,
+      "memo": "명절 상여금"
+    },
+    {
+      "id": "32",
+      "date": "2025-03-12",
+      "type": "expense",
+      "category": "의료비",
+      "amount": 35000,
+      "memo": "치과 진료비"
+    },
+    {
+      "id": "33",
+      "date": "2025-03-14",
+      "type": "expense",
+      "category": "통신비",
+      "amount": 98000,
+      "memo": "3월 휴대폰 요금"
+    },
+    {
+      "id": "34",
+      "date": "2025-03-16",
+      "type": "expense",
+      "category": "저축",
+      "amount": 800000,
+      "memo": "적금 이체"
+    },
+    {
+      "id": "35",
+      "date": "2025-04-01",
+      "type": "income",
+      "category": "투자수익",
+      "amount": 200000,
+      "memo": "주식 배당금"
+    },
+    {
+      "id": "36",
+      "date": "2025-04-03",
+      "type": "expense",
+      "category": "교육비",
+      "amount": 55000,
+      "memo": "코딩 강의"
+    },
+    {
+      "id": "37",
+      "date": "2025-04-05",
+      "type": "expense",
+      "category": "배달",
+      "amount": 18000,
+      "memo": "떡볶이 배달"
+    },
+    {
+      "id": "38",
+      "date": "2025-04-08",
+      "type": "income",
+      "category": "환급금",
+      "amount": 100000,
+      "memo": "세금 환급"
+    },
+    {
+      "id": "39",
+      "date": "2024-01-01",
+      "type": "income",
+      "category": "월급",
+      "amount": 3000000,
+      "memo": "2024년 1월 급여"
+    },
+    {
+      "id": "40",
+      "date": "2024-01-02",
+      "type": "expense",
+      "category": "식비",
+      "amount": 15000,
+      "memo": "새해 첫 점심"
+    },
+    {
+      "id": "41",
+      "date": "2024-01-10",
+      "type": "expense",
+      "category": "문화생활",
+      "amount": 22000,
+      "memo": "영화관람"
+    },
+    {
+      "id": "42",
+      "date": "2024-01-14",
+      "type": "income",
+      "category": "기타수입",
+      "amount": 80000,
+      "memo": "중고서적 판매"
+    },
+    {
+      "id": "43",
+      "date": "2024-02-01",
+      "type": "income",
+      "category": "월급",
+      "amount": 3050000,
+      "memo": "2월 급여"
+    },
+    {
+      "id": "44",
+      "date": "2024-02-04",
+      "type": "expense",
+      "category": "통신비",
+      "amount": 95000,
+      "memo": "2월 휴대폰 요금"
+    },
+    {
+      "id": "45",
+      "date": "2024-02-10",
+      "type": "expense",
+      "category": "배달",
+      "amount": 23000,
+      "memo": "치킨 배달"
+    },
+    {
+      "id": "46",
+      "date": "2024-02-14",
+      "type": "expense",
+      "category": "기타지출",
+      "amount": 40000,
+      "memo": "발렌타인데이 선물"
+    },
+    {
+      "id": "47",
+      "date": "2024-02-20",
+      "type": "income",
+      "category": "이자",
+      "amount": 120000,
+      "memo": "적금 이자"
+    },
+    {
+      "id": "48",
+      "date": "2024-03-01",
+      "type": "income",
+      "category": "월급",
+      "amount": 3050000,
+      "memo": "3월 급여"
+    },
+    {
+      "id": "49",
+      "date": "2024-03-03",
+      "type": "expense",
+      "category": "주거비",
+      "amount": 470000,
+      "memo": "3월 관리비"
+    },
+    {
+      "id": "50",
+      "date": "2024-03-07",
+      "type": "expense",
+      "category": "의료비",
+      "amount": 60000,
+      "memo": "한의원 침치료"
+    },
+    {
+      "id": "51",
+      "date": "2024-03-11",
+      "type": "income",
+      "category": "환급금",
+      "amount": 150000,
+      "memo": "보험료 환급"
+    },
+    {
+      "id": "52",
+      "date": "2024-03-15",
+      "type": "expense",
+      "category": "정기구독",
+      "amount": 8900,
+      "memo": "멜론 스트리밍"
+    },
+    {
+      "id": "53",
+      "date": "2024-03-20",
+      "type": "expense",
+      "category": "식비",
+      "amount": 27000,
+      "memo": "친구랑 점심"
+    },
+    {
+      "id": "54",
+      "date": "2025-01-01",
+      "type": "income",
+      "category": "월급",
+      "amount": 3100000,
+      "memo": "2025년 1월 급여"
+    },
+    {
+      "id": "55",
+      "date": "2025-01-02",
+      "type": "expense",
+      "category": "식비",
+      "amount": 18000,
+      "memo": "편의점 도시락"
+    },
+
+    {
+      "id": "56",
+      "date": "2024-01-03",
+      "type": "income",
+      "category": "월급",
+      "amount": 3000000,
+      "memo": "1월 급여"
+    },
+    {
+      "id": "57",
+      "date": "2024-02-10",
+      "type": "expense",
+      "category": "문화생활",
+      "amount": 25000,
+      "memo": "영화 관람"
+    },
+    {
+      "id": "58",
+      "date": "2024-03-05",
+      "type": "expense",
+      "category": "주거비",
+      "amount": 470000,
+      "memo": "3월 관리비"
+    },
+    {
+      "id": "59",
+      "date": "2024-04-15",
+      "type": "income",
+      "category": "보너스",
+      "amount": 450000,
+      "memo": "1분기 성과급"
+    },
+    {
+      "id": "60",
+      "date": "2024-05-02",
+      "type": "expense",
+      "category": "통신비",
+      "amount": 92000,
+      "memo": "휴대폰 요금"
+    },
+    {
+      "id": "61",
+      "date": "2024-06-09",
+      "type": "income",
+      "category": "기타수입",
+      "amount": 50000,
+      "memo": "중고거래 수익"
+    },
+    {
+      "id": "62",
+      "date": "2024-07-13",
+      "type": "expense",
+      "category": "배달",
+      "amount": 19000,
+      "memo": "피자 배달"
+    },
+    {
+      "id": "63",
+      "date": "2024-08-01",
+      "type": "income",
+      "category": "월급",
+      "amount": 3100000,
+      "memo": "8월 급여"
+    },
+    {
+      "id": "64",
+      "date": "2024-08-12",
+      "type": "expense",
+      "category": "의료비",
+      "amount": 40000,
+      "memo": "감기 치료"
+    },
+    {
+      "id": "65",
+      "date": "2024-09-03",
+      "type": "expense",
+      "category": "정기구독",
+      "amount": 11000,
+      "memo": "넷플릭스"
+    },
+    {
+      "id": "66",
+      "date": "2024-10-11",
+      "type": "income",
+      "category": "이자",
+      "amount": 130000,
+      "memo": "예금 이자"
+    },
+    {
+      "id": "67",
+      "date": "2024-10-19",
+      "type": "expense",
+      "category": "교육비",
+      "amount": 55000,
+      "memo": "토익 강의"
+    },
+    {
+      "id": "68",
+      "date": "2024-11-01",
+      "type": "income",
+      "category": "투자수익",
+      "amount": 270000,
+      "memo": "ETF 수익"
+    },
+    {
+      "id": "69",
+      "date": "2024-11-10",
+      "type": "expense",
+      "category": "식비",
+      "amount": 22000,
+      "memo": "한식당 점심"
+    },
+    {
+      "id": "70",
+      "date": "2024-12-01",
+      "type": "income",
+      "category": "월급",
+      "amount": 3200000,
+      "memo": "연말 급여"
+    },
+    {
+      "id": "71",
+      "date": "2024-12-20",
+      "type": "expense",
+      "category": "기타지출",
+      "amount": 60000,
+      "memo": "연말 회식"
+    },
+    {
+      "id": "72",
+      "date": "2024-12-25",
+      "type": "expense",
+      "category": "문화생활",
+      "amount": 45000,
+      "memo": "크리스마스 공연"
+    },
+    {
+      "id": "73",
+      "date": "2024-12-31",
+      "type": "expense",
+      "category": "저축",
+      "amount": 1000000,
+      "memo": "연말 적금"
+    }
+  ],
+  "incomeCategories": [
+    { "id": "1", "name": "월급" },
+    { "id": "2", "name": "용돈" },
+    { "id": "3", "name": "이자" },
+    { "id": "4", "name": "투자수익" },
+    { "id": "5", "name": "기타수입" },
+    { "id": "6", "name": "보너스" },
+    { "id": "7", "name": "환급금" }
+  ],
+  "expenseCategories": [
+    { "id": "1", "name": "식비" },
+    { "id": "2", "name": "교통비" },
+    { "id": "3", "name": "주거비" },
+    { "id": "4", "name": "통신비" },
+    { "id": "5", "name": "의료비" },
+    { "id": "6", "name": "문화생활" },
+    { "id": "7", "name": "교육비" },
+    { "id": "8", "name": "저축" },
+    { "id": "9", "name": "기타지출" },
+    { "id": "10", "name": "배달" },
+    { "id": "11", "name": "정기구독" }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "홍길동",
+      "email": "hong@example.com",
+      "image": 2
+    }
+  ],
+  "goals": [
+    {
+      "id": "3092",
+      "amount": 5000000
+    }
+  ]
+}

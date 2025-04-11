@@ -23,12 +23,8 @@ const currentMonth = computed(() => {
   return `${year}-${month}`;
 });
 // 현재 월의 수입과 지출 계산
-const monthlyIncome = computed(() =>
-  budgetStore.monthlyIncome(currentMonth.value)
-);
-const monthlyExpense = computed(() =>
-  budgetStore.monthlyExpense(currentMonth.value)
-);
+const monthlyIncome = computed(() => budgetStore.monthlyIncome(currentMonth.value));
+const monthlyExpense = computed(() => budgetStore.monthlyExpense(currentMonth.value));
 const netIncome = computed(() => monthlyIncome.value - monthlyExpense.value);
 
 // 최근 거래내역 4개 가져옴
@@ -93,17 +89,17 @@ onMounted(async () => {
     <div class="summary-cards px-3">
       <div class="d-flex gap-3 mb-3">
         <div class="card flex-fill square-card">
-          <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-primary">수입</h6>
-            <h5 class="card-title text-primary">
+          <div class="card-body income-card">
+            <h6 class="card-subtitle mb-2 text-success fw-bold">수입</h6>
+            <h5 class="card-title text-success">
               +{{ formatCurrency(monthlyIncome) }}원
             </h5>
           </div>
         </div>
 
         <div class="card flex-fill square-card">
-          <div class="card-body">
-            <h6 class="card-subtitle mb-2 text-danger">지출</h6>
+          <div class="card-body expense-card">
+            <h6 class="card-subtitle mb-2 text-danger fw-bold">지출</h6>
             <h5 class="card-title text-danger">
               -{{ formatCurrency(monthlyExpense) }}원
             </h5>
@@ -112,11 +108,9 @@ onMounted(async () => {
       </div>
 
       <div class="card mb-4">
-        <div class="card-body">
-          <h6 class="card-subtitle mb-2 text-success">순수익</h6>
-          <h5 class="card-title text-success">
-            {{ formatCurrency(netIncome) }}원
-          </h5>
+        <div class="card-body net-income-card">
+          <h6 class="card-subtitle mb-2 text-primary fw-bold">순수익</h6>
+          <h5 class="card-title text-primary">{{ formatCurrency(netIncome) }}원</h5>
         </div>
       </div>
     </div>
@@ -138,9 +132,7 @@ onMounted(async () => {
             </div>
             <div
               class="amount"
-              :class="
-                transaction.type === 'income' ? 'text-success' : 'text-danger'
-              "
+              :class="transaction.type === 'income' ? 'text-success' : 'text-danger'"
             >
               {{ transaction.type === 'income' ? '+' : '-'
               }}{{ formatCurrency(transaction.amount) }}원
@@ -152,11 +144,7 @@ onMounted(async () => {
   </div>
 
   <!-- 연월 선택 모달 -->
-  <div
-    class="month-modal"
-    v-if="showMonthModal"
-    @click.self="showMonthModal = false"
-  >
+  <div class="month-modal" v-if="showMonthModal" @click.self="showMonthModal = false">
     <div class="month-modal-content">
       <div class="year-selector">
         <div class="year-grid" v-if="!isYearSelected">
@@ -224,6 +212,35 @@ onMounted(async () => {
 
 .card-body {
   padding: 1rem;
+}
+
+.income-card {
+  background-color: #dceee7;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 5px 7px rgba(0, 0, 0, 0.05);
+}
+
+.income-card .card-title {
+  margin-top: 15px;
+}
+
+.expense-card {
+  background-color: #fae6e8;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 5px 7px rgba(0, 0, 0, 0.05);
+}
+
+.expense-card .card-title {
+  margin-top: 15px;
+}
+
+.net-income-card {
+  background-color: #e2ecff;
+  border: none;
+  border-radius: 12px;
+  box-shadow: 0 5px 7px rgba(0, 0, 0, 0.05);
 }
 
 .card-subtitle {

@@ -127,7 +127,7 @@ onMounted(async () => {
         </button>
         <button
           class="btn"
-          :class="type === 'expense' ? 'btn-primary' : 'btn-outline-primary'"
+          :class="type === 'expense' ? 'btn-danger' : 'btn-outline-danger'"
           @click="handleTypeChange('expense')"
         >
           지출
@@ -243,10 +243,9 @@ onMounted(async () => {
   width: 100%;
   max-width: 430px;
   margin: 0 auto;
-  border-top-left-radius: 16px;
-  border-top-right-radius: 16px;
+  border-radius: 16px;
   padding: 20px;
-  margin-bottom: 60px;
+  margin-bottom: 100px;
   overflow-y: auto;
 }
 
@@ -260,6 +259,7 @@ onMounted(async () => {
 
 .list-group-item:hover {
   background-color: #f8f9fa;
+  color: #007bff;
 }
 
 .btn-link {
@@ -295,8 +295,12 @@ onMounted(async () => {
   background-color: #0d6efd;
   color: white;
 }
+.btn-group .btn.btn-danger {
+  background-color: #dc3545;
+  color: white;
+}
 
-.btn-group .btn:not(.btn-primary) {
+.btn-group .btn:not(.btn-primary):not(.btn-danger) {
   background-color: white;
 }
 

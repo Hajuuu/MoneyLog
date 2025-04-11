@@ -18,17 +18,23 @@
 <script setup>
 import { ref, computed, onMounted } from 'vue';
 import { useGoalsStore } from '@/stores/goal';
-const store = useGoalsStore();
-const emit = defineEmits(['close']);
+import { useToast } from 'vue-toastification';
 
+const store = useGoalsStore();
+const toast = useToast();
+const emit = defineEmits(['close']);
 const currentAmount = ref({
   amount: '',
 });
 
 const addGoal = async () => {
-  await store.addGoals({
-    amount: parseInt(currentAmount.value.amount), // 목표 금액
-  }); // 목표 금액 추가
+  const amount = parseInt(currentAmount.value.amount);
+
+  if (isNaN(amount) || parseInt(amount) <= 0) {
+    toast.error('올바른 목표 금액을 입력하세요');
+    return;
+  }
+  await store.addGoals({ amount: parseInt(currentAmount.value.amount) });
   emit('close');
 };
 </script>
@@ -40,7 +46,7 @@ const addGoal = async () => {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* 배경 어둡게 */
+  background-color: rgba(0, 0, 0, 0.5);
   display: flex;
   justify-content: center;
   align-items: center;
@@ -51,7 +57,7 @@ const addGoal = async () => {
   background: #fff;
   padding: 30px 20px;
   border-radius: 12px;
-  width: 300px; /* ✅ 작게 만듦 */
+  width: 300px;
   box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
   text-align: center;
 }

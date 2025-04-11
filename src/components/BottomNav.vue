@@ -103,4 +103,42 @@ const navigate = (routeName) => {
 .nav-item:hover {
   color: #0056b3;
 }
+
+/* 브라우저 크기 늘렸을때 반응형 스타일 */
+@media (min-width: 1024px) {
+  .bottom-nav.desktop-nav {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: auto;
+    max-width: 80px;
+    width: 80px;
+    height: 100vh;
+    flex-direction: column;
+    margin: 0;
+    border-top: none;
+    border-right: 1px solid #eee;
+    overflow-y: auto;
+    z-index: 1001;
+  }
+
+  .bottom-nav.desktop-nav .nav-item {
+    flex-direction: column;
+    padding: 15px 0;
+  }
+
+  .bottom-nav.desktop-nav .nav-item i {
+    font-size: 1.5rem;
+    margin-bottom: 8px;
+  }
+
+  .bottom-nav.desktop-nav .nav-item span {
+    font-size: 0.8rem;
+  }
+
+  .bottom-nav.mobile-nav {
+    display: none !important;
+  }
+}
 </style>

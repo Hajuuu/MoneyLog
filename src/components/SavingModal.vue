@@ -4,11 +4,7 @@
       <div class="modal-content">
         <div class="modal-header">
           <h5 class="modal-title">저축 내역</h5>
-          <button
-            type="button"
-            class="btn-close"
-            @click="$emit('close')"
-          ></button>
+          <button type="button" class="btn-close" @click="$emit('close')"></button>
         </div>
         <div class="modal-body">
           <ul class="list-group">
@@ -45,10 +41,7 @@ const sortedSavings = computed(() => {
 });
 
 const formatCurrency = (amount) => {
-  return new Intl.NumberFormat('ko-KR', {
-    style: 'currency',
-    currency: 'KRW',
-  }).format(amount);
+  return new Intl.NumberFormat('ko-KR').format(amount);
 };
 
 const formatDate = (date) => {

@@ -48,10 +48,7 @@ const animatePercentage = () => {
 
   const interval = setInterval(() => {
     if (animatedPercentage.value < target) {
-      animatedPercentage.value = Math.min(
-        animatedPercentage.value + step,
-        target
-      );
+      animatedPercentage.value = Math.min(animatedPercentage.value + step, target);
     } else {
       clearInterval(interval);
 
@@ -66,10 +63,7 @@ const animatePercentage = () => {
 };
 
 const formatCurrency = (amount) => {
-  return new Intl.NumberFormat('ko-KR', {
-    style: 'currency',
-    currency: 'KRW',
-  }).format(amount);
+  return new Intl.NumberFormat('ko-KR').format(amount);
 };
 
 const formatDate = (date) => {
@@ -139,9 +133,7 @@ onMounted(async () => {
         </button>
       </div>
 
-      <div class="mb-3 fw-bold">
-        목표 금액: {{ formatCurrency(goalAmount.amount) }}원
-      </div>
+      <div class="mb-3 fw-bold">목표 금액: {{ formatCurrency(goalAmount.amount) }}원</div>
       <div class="progress mb-3">
         <div
           class="progress-bar bg-success"
@@ -153,9 +145,7 @@ onMounted(async () => {
         ></div>
       </div>
 
-      <div class="mb-2 fw-bold">
-        현재 금액: {{ formatCurrency(totalSavingAmount) }}원
-      </div>
+      <div class="mb-2 fw-bold">현재 금액: {{ formatCurrency(totalSavingAmount) }}원</div>
 
       <div class="progress mb-3">
         <div
@@ -175,12 +165,7 @@ onMounted(async () => {
         {{ Math.floor(percentage) }}%
       </div>
 
-      <img
-        :src="pigImage"
-        alt="Piggy"
-        class="pig-img"
-        @click="isModalVisible = true"
-      />
+      <img :src="pigImage" alt="Piggy" class="pig-img" @click="isModalVisible = true" />
 
       <div v-if="showMessage" class="alert-message">
         {{ messageText }}
@@ -192,6 +177,7 @@ onMounted(async () => {
         :show="isModalVisible"
         :savings="savingsHistory"
         @close="isModalVisible = false"
+        class="modal-container"
       />
     </div>
   </div>
@@ -202,7 +188,7 @@ onMounted(async () => {
   display: flex;
   justify-content: center;
   align-items: center;
-  height: 100vh; /* 화면 전체 높이 */
+  height: 750px; /* 화면 전체 높이 */
 }
 
 .container {
@@ -237,6 +223,7 @@ onMounted(async () => {
   border-radius: 20px;
   box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
   text-align: center;
+  position: relative;
 }
 .progress {
   height: 20px;
@@ -260,10 +247,30 @@ onMounted(async () => {
   color: #0f5132;
   padding: 10px 20px;
   border-radius: 12px;
-  margin-bottom: 16px;
   font-weight: bold;
   font-size: 1rem;
   animation: fadeInOut 2s ease-in-out;
+  position: absolute;
+  left: 80px;
+  bottom: 10px;
+  z-index: 10;
+  width: auto;
+}
+
+.modal-container {
+  position: fixed;
+  z-index: 2000;
+  width: 100%;
+  /* top: 0;
+  left: 0;
+  right: 0;
+  height: 100%; */
+}
+
+.modal-container :deep(.modal-dialog) {
+  max-width: 420px;
+  width: 100%;
+  margin: 1.75rem auto;
 }
 
 @keyframes fadeInOut {

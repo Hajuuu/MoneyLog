@@ -30,5 +30,19 @@ export const useGoalsStore = defineStore('goal', {
         throw error;
       }
     },
+
+    async updateGoals(id, amount) {
+      try {
+        const response = await goalAPI.updateGoals(id, amount);
+        const index = this.goals.findIndex((t) => t.id === id);
+        if (index !== -1) {
+          this.goals[index] = response.data;
+        }
+        return response.data;
+      } catch (error) {
+        this.error = error.message;
+        throw error;
+      }
+    },
   },
 });

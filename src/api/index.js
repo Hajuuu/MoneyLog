@@ -34,6 +34,7 @@ export const settingAPI = {
 export const goalAPI = {
   getGoals: () => api.get('/goals'),
   addGoals: (amount) => api.post('/goals', amount),
+  updateGoals: (id, amount) => api.put(`/goals/${id}`, amount),
 };
 
 export default api;

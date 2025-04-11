@@ -51,7 +51,7 @@ const addTransaction = async () => {
       type: type.value,
       amount: parseInt(amount.value),
       category: category.value,
-      description: memo.value,
+      memo: memo.value,
       date: date.value,
     });
 

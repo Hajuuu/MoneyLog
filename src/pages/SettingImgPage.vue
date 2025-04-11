@@ -108,7 +108,6 @@ const saveProfile = async () => {
   };
 
   await settingStore.updateSetting(settingStore.setting.id, updated);
-  alert('수정되었습니다');
   router.push('/setting');
 };
 </script>

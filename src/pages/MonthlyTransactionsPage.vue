@@ -234,6 +234,8 @@ onMounted(() => {
   border-top-right-radius: 16px;
   padding: 20px;
   margin-bottom: 60px;
+  overflow-x: hidden;
+  overflow: auto;
 }
 
 .month-list {
